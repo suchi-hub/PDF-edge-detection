@@ -1,11 +1,16 @@
-import numpy as np
+import matplotlib.pyplot as plt
 import cv2 as cv
-from matplotlib import pyplot as plt
-img = cv.imread('messi5.jpg', cv.IMREAD_GRAYSCALE)
-assert img is not None, "file could not be read, check with os.path.exists()"
-edges = cv.Canny(img,100,200)
-plt.subplot(121),plt.imshow(img,cmap = 'gray')
-plt.title('Original Image'), plt.xticks([]), plt.yticks([])
-plt.subplot(122),plt.imshow(edges,cmap = 'gray')
-plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
-plt.show()
+import numpy as np
+from google.colab.patches import cv_imshow
+
+#read image
+img = cv.imread('src.png', cv.IMREAD_GRAYSCALE)
+
+#convert to binary
+_ , bimg = cv.threshold(img, 200, 255, cv.THRESH_BINARY)
+
+#extract edges
+cimg = cv.Canny(bimg, 100, 200)
+
+#detect lines
+linesP = cv.HoughLinesP(cimg, 1, np.pi / 180, 50, None, 50, 10)
