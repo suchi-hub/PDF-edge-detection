@@ -14,3 +14,7 @@ cimg = cv.Canny(bimg, 100, 200)
 
 #detect lines
 linesP = cv.HoughLinesP(cimg, 1, np.pi / 180, 50, None, 50, 10)
+
+# Code verification is complete. I am able to generate the rho and theta for the horizontal and vertical lines. 
+# The next step is to create simple and small functions that capture the code and simplify the implementation
+# I will update the code after testing the fucntions.
